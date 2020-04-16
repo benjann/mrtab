@@ -1,2 +1,2 @@
 v 3
-p mrtab
+p mrtab module to compute one-way and two-way tables of multiple responses

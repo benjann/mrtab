@@ -1,8 +1,9 @@
 v 3
-d mrtab
+d mrtab: module to compute one-way and two-way tables of multiple responses
+d 
 d Author: Ben Jann, University of Bern, ben.jann@soz.unibe.ch
 d
-d Distribution-Date: 16apr2020
+d Distribution-Date: 20200416
 f mrtab.ado
 f drugs.dta
 f mrtab.hlp
