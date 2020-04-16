@@ -1,0 +1,12 @@
+v 3
+d mrtab
+d Author: Ben Jann, University of Bern, ben.jann@soz.unibe.ch
+d
+d Distribution-Date: 16apr2020
+f mrtab.ado
+f drugs.dta
+f mrtab.hlp
+f _mrsvmat.ado
+f _mrsvmat.hlp
+f mrgraph.ado
+f mrgraph.hlp
