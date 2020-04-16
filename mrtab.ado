@@ -4,6 +4,7 @@
 *  version 2.19, Ben Jann, 27apr2005
 *! version 2.20, Ben Jann, 25jun2007
 *! version 2.21, Ben Jann, 22jun2019
+*! version 2.22, Ben Jann, 16apr2020
 
 program define mrtab, rclass sortpreserve byable(recall)
     version 8.2
@@ -116,9 +117,22 @@ program define mrtab, rclass sortpreserve byable(recall)
     if "`by'"!="" local bylabel="`label'"==""
     if `strvars' local label 1
     else {
-        local label="`label'"==""
-        if `poly'&`"`:val l `:word 1 of `varlist'''"'=="" local label 0
-        if !`poly'&`"`:var l `:word 1 of `varlist'''"'=="" local label 0
+        if "`label'"!="" local label 0
+        else {
+            local label 0
+            foreach var of local varlist {
+                if `poly' {
+                    local tmp: val l `var'
+                }
+                else {
+                    local tmp: var l `var'
+                }
+                if `"`tmp'"'!="" {
+                    local label 1
+                    continue, break
+                }
+            }
+        }
     }
     if `label'==0&"`names'"!="" {
         di as error "option nonames not allowed"
@@ -192,7 +206,9 @@ program define mrtab, rclass sortpreserve byable(recall)
                 qui gen byte `item`i'' = ( `temp' ) if ``i''<. & `touse'
             }
             local itemlist `"`itemlist'`item`i'' "'
-            qui lab var `item`i'' `"`:var l ``i'''"'
+            local tmp: var l ``i''
+            if `"`tmp'"'=="" local tmp `"``i''"'
+            qui lab var `item`i'' `"`tmp'"'
         }
     }
 
