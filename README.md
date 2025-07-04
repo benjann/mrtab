@@ -23,6 +23,10 @@ Installation from GitHub:
 
 Main changes:
 
+    04jul2025
+    - mrtab now displays an informative error message if the variable specified in
+      by() is constant
+
     16apr2020
     - in indicator mode, if the first variable had no label, no labels were
       displayed; this is fixed

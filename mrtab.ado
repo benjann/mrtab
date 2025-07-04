@@ -5,6 +5,7 @@
 *! version 2.20, Ben Jann, 25jun2007
 *! version 2.21, Ben Jann, 22jun2019
 *! version 2.22, Ben Jann, 16apr2020
+*! version 2.23, Ben Jann, 04jul2025
 
 program define mrtab, rclass sortpreserve byable(recall)
     version 8.2
@@ -274,6 +275,10 @@ program define mrtab, rclass sortpreserve byable(recall)
     if "`by'"!="" {
         qui ta `by' if `touse'
         local nby=r(r)
+        if `nby'==1 {
+            di as error "by(): only 1 group found, at least 2 required"
+            exit 498
+        }
         local inby "in \`by1'/\`by2'"
         local strby=substr("`: type `by''",1,3)=="str"
     }
